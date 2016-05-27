@@ -71,7 +71,7 @@ namespace CCSWE.FiveHundredPx
 		#endregion
 
 		#region Private Methods
-		private async Task<T> Delete<T>(string url) where T : Response, new()
+		public async Task<T> Delete<T>(string url) where T : Response, new()
 		{
 			T returnValue;
 			string rootUrl, parameters;
@@ -87,7 +87,7 @@ namespace CCSWE.FiveHundredPx
 			return returnValue;
 		}
 
-		private static async Task<T> DeserializeResponse<T>(HttpResponseMessage httpResponse) where T : Response, new()
+        public static async Task<T> DeserializeResponse<T>(HttpResponseMessage httpResponse) where T : Response, new()
 		{
 			var content = await httpResponse.Content.ReadAsStringAsync();
 			var response = JsonConvert.DeserializeObject<T>(content) ?? new T();
@@ -181,7 +181,7 @@ namespace CCSWE.FiveHundredPx
 			return Convert.ToInt64(ts.TotalSeconds).ToString();
 		}
 
-		private async Task<T> Get<T>(string url, int page = -1, int resultsPerPage = 20) where T : Response, new()
+        public async Task<T> Get<T>(string url, int page = -1, int resultsPerPage = 20) where T : Response, new()
 		{
 			T returnValue;
 			string rootUrl, parameters;
@@ -269,7 +269,7 @@ namespace CCSWE.FiveHundredPx
 			return stringBuilder.ToString();
 		}
 
-		private async Task<T> Post<T>(string url) where T : Response, new()
+        public async Task<T> Post<T>(string url) where T : Response, new()
 		{
 			T returnValue;
 			string rootUrl, parameters;
